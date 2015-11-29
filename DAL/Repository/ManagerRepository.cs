@@ -7,18 +7,13 @@ using Model;
 
 namespace DAL.Repository
 {
-    public class ManagerRepository : AbstractRepository, IModelRepository<DAL.Models.Manager>
+    public class ManagerRepository : AbstractRepository, IModelRepository<DAL.Models.Manager, Model.Manager>
     {
         Model.Manager ToEntity(DAL.Models.Manager source)
         {
             return new Model.Manager() 
             { 
-                Name = source.Name, 
-                Date = source.Date,
-                Client = source.Client,
-                Product = source.Product,
-                Cost = source.Cost,
-                ID_Manager = source.ID_Manager
+                ManagerName = source.ManagerName
             };
         }
 
@@ -26,13 +21,24 @@ namespace DAL.Repository
         {
             return new DAL.Models.Manager() 
             {
-                Name = source.Name,
-                Date = source.Date,
-                Client = source.Client,
-                Product = source.Product,
-                Cost = source.Cost,
-                ID_Manager = source.ID_Manager
+                ManagerName = source.ManagerName
             };
+        }
+
+        public Model.Manager GetEntity(DAL.Models.Manager source)
+        {
+            var entity = this.managersContext.Manager.FirstOrDefault(x => x.ManagerName == source.ManagerName);
+            //return new Model.Manager()
+            //{
+            //    ManagerName = source.ManagerName
+            //};
+            return entity;
+        }
+
+        public Model.Manager GetEntityNameById(int id)
+        {
+            var entity = this.managersContext.Manager.FirstOrDefault(x => x.ID_Manager == id);
+            return entity;
         }
 
         public void Add(DAL.Models.Manager item)
@@ -43,10 +49,10 @@ namespace DAL.Repository
 
         public void Remove(DAL.Models.Manager item)
         {
-            var user = this.managersContext.Manager.FirstOrDefault(x => x.ID_Manager == item.ID_Manager);
-            if (user != null)
+            var entity = this.managersContext.Manager.FirstOrDefault(x => x.ID_Manager == item.ID_Manager);
+            if (entity != null)
             {
-                managersContext.Manager.Remove(user);
+                managersContext.Manager.Remove(entity);
             }
             else
             {
@@ -56,14 +62,28 @@ namespace DAL.Repository
 
         public void Update(DAL.Models.Manager item)
         {
-            throw new NotImplementedException();
+            var entity = this.managersContext.Manager.FirstOrDefault(x => x.ManagerName == item.ManagerName);
+            if (entity != null)
+            {
+                entity.ManagerName = item.ManagerName;
+            }
+            else
+            {
+                throw new ArgumentException("Incorrect argument!!!");
+            }
         }
 
         public IEnumerable<DAL.Models.Manager> Items
         {
             get
             {
-                return this.managersContext.Manager.Select(x => this.ToObject(x));
+                var b = new List<DAL.Models.Manager>();
+                foreach (var a in this.managersContext.Manager.Select(x => x))
+                {
+                    b.Add(ToObject(a));
+                }
+                
+                return b;
             }
         }
 

@@ -16,6 +16,7 @@ namespace DAL.Repository
         }
         public void Dispose()
         {
+            managersContext.Dispose();
             GC.SuppressFinalize(this);
         }
         

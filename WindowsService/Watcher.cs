@@ -9,24 +9,25 @@ namespace WindowsService
 {
     public class Watcher
     {
-        Parser p;
-        public FileSystemWatcher watcher;
-        TaskFactory tf = new System.Threading.Tasks.TaskFactory();
+        public Parser Parser;
+        public FileSystemWatcher FileWatcher;
+        //private TaskFactory _taskFactory = new System.Threading.Tasks.TaskFactory();
+        private Task task;
 
         public Watcher()
         {
-            p = new Parser();
-            watcher = new FileSystemWatcher();
-            watcher.Path = "c:\\Managers";
-            watcher.Filter = "*.csv";
+            Parser = new Parser();
+            FileWatcher = new FileSystemWatcher();
+            FileWatcher.Path = "c:\\Managers";
+            FileWatcher.Filter = "*.csv";
+            FileWatcher.NotifyFilter = NotifyFilters.FileName;
+           // watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
+           //| NotifyFilters.FileName | NotifyFilters.DirectoryName;
 
-            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
-           | NotifyFilters.FileName | NotifyFilters.DirectoryName;
 
-
-            watcher.Changed += new FileSystemEventHandler(OnChanged);
-            watcher.Created += new FileSystemEventHandler(OnChanged);
-            watcher.EnableRaisingEvents = true;
+            FileWatcher.Changed += new FileSystemEventHandler(OnChanged);
+            FileWatcher.Created += new FileSystemEventHandler(OnChanged);
+            FileWatcher.EnableRaisingEvents = true;
         }
 
         public void run()
@@ -35,9 +36,16 @@ namespace WindowsService
         }
         public void OnChanged(object source, FileSystemEventArgs e)
         {
-            string t;
-            t = e.FullPath;
-            tf.StartNew(() => p.ParseData(t));
+            
+            //_taskFactory.StartNew(() => Parser.ParseData(t));
+            task = new Task(() => CallParse(source, e));
+            task.Start();
+        }
+        public void CallParse(object source, FileSystemEventArgs e)
+        { 
+            string path;
+            path = e.FullPath;
+            Parser.ParseData(path);
         }
     }
 }

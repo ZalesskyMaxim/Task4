@@ -8,11 +8,11 @@ namespace DAL.Models
 {
     public class Manager
     {
-        public string Name { get; set; }
-        public string Date { get; set; }
-        public string Client { get; set; }
-        public string Product { get; set; }
-        public string Cost { get; set; }
         public int ID_Manager { get; set; }
+        public string ManagerName { get; set; }
+        //public string Date { get; set; }
+        //public string Client { get; set; }
+        //public string Product { get; set; }
+        //public string Cost { get; set; }
     }
 }

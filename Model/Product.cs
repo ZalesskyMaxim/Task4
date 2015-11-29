@@ -12,15 +12,16 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Manager
+    public partial class Product
     {
-        public Manager()
+        public Product()
         {
             this.SaleInfo = new HashSet<SaleInfo>();
         }
     
-        public int ID_Manager { get; set; }
-        public string ManagerName { get; set; }
+        public int ID_Product { get; set; }
+        public string ProductName { get; set; }
+        public string ProductCost { get; set; }
     
         public virtual ICollection<SaleInfo> SaleInfo { get; set; }
     }

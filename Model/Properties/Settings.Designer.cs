@@ -26,7 +26,8 @@ namespace Model.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=Managers;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Maxim\\SQLEXPRESS;Initial Catalog=Task4Managers;Integrated Security=Tr" +
+            "ue")]
         public string DBConnect {
             get {
                 return ((string)(this["DBConnect"]));

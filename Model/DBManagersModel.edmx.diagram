@@ -4,8 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="862315a7d32e422e8a7529b43a3412b8" Name="Diagram1">
-        <EntityTypeShape EntityType="ManagersModel.Manager" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="e76099c1f2934bec8ec4ead8b6196cd2" Name="Diagram1">
+        <EntityTypeShape EntityType="Task4ManagersModel.Client" Width="1.5" PointX="0.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Task4ManagersModel.Manager" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Task4ManagersModel.Product" Width="1.5" PointX="6.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Task4ManagersModel.SaleInfo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Task4ManagersModel.FK_SaleInfo_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="Task4ManagersModel.FK_SaleInfo_Manager" ManuallyRouted="false" />
+        <AssociationConnector Association="Task4ManagersModel.FK_SaleInfo_Product" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

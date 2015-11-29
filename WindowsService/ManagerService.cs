@@ -25,6 +25,8 @@ namespace WindowsService
 
         protected override void OnStop()
         {
+            _watcher.FileWatcher.Dispose();
+            //_watcher.p.mr.Dispose();
         }
     }
 }
