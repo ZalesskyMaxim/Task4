@@ -52,3 +52,6 @@ Model/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
 Model/obj/Debug/TempPE/DBManagersModel.cs.dll
 Model/obj/Debug/TempPE/DBManagersModel.Designer.cs.dll
 WindowsService/bin/Debug/WindowsService.exe
+*.dll
+DAL/bin/Debug/DAL.dll.config
+DAL/bin/Debug/DAL.pdb
