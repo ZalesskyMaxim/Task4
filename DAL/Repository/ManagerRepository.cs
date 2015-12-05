@@ -28,10 +28,6 @@ namespace DAL.Repository
         public Model.Manager GetEntity(DAL.Models.Manager source)
         {
             var entity = this.managersContext.Manager.FirstOrDefault(x => x.ManagerName == source.ManagerName);
-            //return new Model.Manager()
-            //{
-            //    ManagerName = source.ManagerName
-            //};
             return entity;
         }
 

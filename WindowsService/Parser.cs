@@ -13,27 +13,25 @@ namespace WindowsService
 {
     public class Parser
     {
-        private DatabaseHandler _dbHandler;
-
         public Parser()
         {
-            _dbHandler = new DatabaseHandler();
         }
 
-        public void ParseData(string path)
+        public IList<Journal> ParseData(string path)
         {
             string managerName;
             string[] param;
             managerName = Path.GetFileName(path).Split('_').First();
-
+            IList<Journal> records = new List<Journal>();
             using(StreamReader sr = new StreamReader(path))
             {
                 while (!sr.EndOfStream)
                 {
                     param = sr.ReadLine().Split(',');
-                    _dbHandler.AddToDatabase(managerName, param[0], param[1], param[2], param[3]);
+                    records.Add(new Journal(managerName, param[0], param[1], param[2], param[3]));
                 }
             }
+            return records;
         }
     }
 }

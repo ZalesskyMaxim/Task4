@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHandler.cs" />
+    <Compile Include="Journal.cs" />
     <Compile Include="ManagerService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -72,6 +73,7 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordsHandler.cs" />
     <Compile Include="Watcher.cs" />
   </ItemGroup>
   <ItemGroup>

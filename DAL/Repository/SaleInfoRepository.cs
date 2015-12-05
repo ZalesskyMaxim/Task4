@@ -88,7 +88,6 @@ namespace DAL.Repository
                 }
 
                 return b;
-                //return this.managersContext.SaleInfo.Select(x => this.ToObject(x));
             }
         }
 

@@ -22,11 +22,11 @@ namespace WindowsService
             _saleInfoRepository = new SaleInfoRepository();
         }
 
-        public void AddToDatabase(string managerName, string saleDate, string clientName, string productName, string productCost)
+        public void AddToDatabase(Journal journal)
         {
             lock (this)
             {
-                var newManager = new DAL.Models.Manager { ManagerName = managerName };
+                var newManager = new DAL.Models.Manager { ManagerName = journal.ManagerName };
                 var manager = _managerRepository.GetEntity(newManager);
                 if (manager == null)
                 {
@@ -35,19 +35,19 @@ namespace WindowsService
                     manager = _managerRepository.GetEntity(newManager);
                 }
 
-                var newClient = new DAL.Models.Client { ClientName = clientName };
+                var newClient = new DAL.Models.Client { ClientName = journal.ClientName };
                 _clientRepository.Add(newClient);
                 _clientRepository.SaveChanges();
                 var client = _clientRepository.GetEntity(newClient);
 
-                var newProduct = new DAL.Models.Product { ProductName = productName, ProductCost = productCost };
+                var newProduct = new DAL.Models.Product { ProductName = journal.ProductName, ProductCost = journal.ProductCost };
                 _productRepository.Add(newProduct);
                 _productRepository.SaveChanges();
                 var product = _productRepository.GetEntity(newProduct);
 
                 var saleInfo = new DAL.Models.SaleInfo
                 {
-                    SaleDate = saleDate,
+                    SaleDate = journal.SaleDate,
                     ID_Manager = manager.ID_Manager,
                     ID_Client = client.ID_Client,
                     ID_Product = product.ID_Product
